@@ -1,0 +1,29 @@
+from datetime import datetime, date
+
+def salary(hr):
+    pay = hr*5
+    print(f'your salary is ${pay}')
+
+print(date.today())
+# getting the system's date
+# #asking for Nana to input the time he started the work
+work_start = input("Nana input the time you started work in 24hr format")
+time_work_start = datetime.strptime(work_start, '%H:%M')
+# converting string input to time in hours and minutes
+# asking Nana to input the time he finished the work in 24 hour format
+work_finished = input("Nana input the time you finished work in 24hr format")
+time_work_finished = datetime.strptime(work_finished, '%H:%M')
+# converting string input to time in hours and minutes
+while time_work_finished > time_work_start:
+    # finding the difference between time Nana started the work and the time Nana finished the task
+    hours_spent = time_work_finished - time_work_start
+    hours_spent_to_sec = hours_spent.seconds  # converting the hours spent into seconds
+    # converting time spent from seconds into an integer to be able to calculate the pay
+    int_of_hours_spent = hours_spent_to_sec / 60 / 60
+    print("you started the work on:", date.today(), time_work_start)
+    print('You finished the work on:', date.today(), time_work_finished)
+    print(f'you spent: {hours_spent} hours')
+    salary(int_of_hours_spent)
+    break
+else:
+    print('the time you completed the task should be ahead of the time you started')
